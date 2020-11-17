@@ -2,17 +2,19 @@ package com.josmartinez.memorizecards;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
-
-    // The order message, displayed in the Toast and sent to the new Activity.
-    private String mOrderMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        final Button button = findViewById(R.id.button_to_shuffle);
+        button.setOnClickListener(v -> {
+            // Start an Activity for the Deck of cards
+            Intent intent = new Intent(MainActivity.this, DeckActivity.class);
+            startActivity(intent);
+        
+        });
 
     }
 
@@ -58,11 +67,21 @@ public class MainActivity extends AppCompatActivity {
         // the return statements.
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            mOrderMessage = getString(R.string.order_message);
-            displayToast(mOrderMessage);
 
+            // The message displayed in the Toast and sent to the new Activity.
+            String mActionMessage = getString(R.string.action_message);
+            displayToast(mActionMessage);
+
+            // Start an Activity from the menu item action settings
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            
             return true;
         }
+
+
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -76,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message,
                 Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }
