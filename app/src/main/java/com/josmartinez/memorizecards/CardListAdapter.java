@@ -48,7 +48,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
 
     // ViewHolder for the adapter
 
-    public static class CardViewHolder extends RecyclerView.ViewHolder {
+    public class CardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView cardItemView;
         final CardListAdapter mAdapter;
@@ -59,7 +59,20 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
             super(itemView);
             cardItemView = itemView.findViewById(R.id.word_title);
             this.mAdapter = adapter;
+            itemView.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View v) {
+            // Get the position of the item that was clicked.
+            int mPosition = getLayoutPosition();
+            // Use that to access the affected item in mCardList.
+            String element = mCardList.get(mPosition);
+            // Change the word in the mCardList.
+            mCardList.set(mPosition, "Clicked! " + element);
+            // Notify the adapter, that the data has changed so it can
+            // update the RecyclerView to display the data.
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
