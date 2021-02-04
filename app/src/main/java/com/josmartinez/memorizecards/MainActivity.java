@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
 
-        final Button button = findViewById(R.id.button_to_shuffle);
-        button.setOnClickListener(v -> {
-            // Start an Activity for the Deck of cards
-            Intent intent = new Intent(MainActivity.this, DeckActivity.class);
-            startActivity(intent);
-        
-        });
+//        final Button button = findViewById(R.id.button_to_shuffle);
+//        button.setOnClickListener(v -> {
+//            // Start an Activity for the Deck of cards
+//            Intent intent = new Intent(MainActivity.this, DeckActivity.class);
+//            startActivity(intent);
+//
+//        });
 
 
 
